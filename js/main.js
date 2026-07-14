@@ -154,10 +154,13 @@ function initHero() {
 function initTelemetry() {
   const latencyEl = document.getElementById("hud-latency");
   const nodesEl = document.getElementById("hud-nodes");
-  if (!latencyEl || !nodesEl) return;
+  const nodesElMobile = document.getElementById("hud-nodes-m");
+  if (!nodesEl && !nodesElMobile) return;
   setInterval(() => {
-    latencyEl.textContent = `${(8 + Math.random() * 9).toFixed(1)}ms`;
-    nodesEl.textContent = `${120 + Math.floor(Math.random() * 14)}`;
+    const nodes = `${120 + Math.floor(Math.random() * 14)}`;
+    if (latencyEl) latencyEl.textContent = `${(8 + Math.random() * 9).toFixed(1)}ms`;
+    if (nodesEl) nodesEl.textContent = nodes;
+    if (nodesElMobile) nodesElMobile.textContent = nodes;
   }, 1800);
 }
 

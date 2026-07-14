@@ -63,32 +63,37 @@
 </header>
 
 <!-- ============================ HERO ============================ -->
-<section id="inicio" class="relative h-screen w-full overflow-hidden flex items-center">
+<section id="inicio" class="relative min-h-[100dvh] w-full overflow-hidden flex items-center pt-28 pb-16 md:pt-16 md:pb-0">
   <div id="hero-canvas" aria-hidden="true"></div>
   <div class="grid-overlay"></div>
 
-  <!-- HUD readouts -->
-  <div class="absolute top-24 left-6 md:left-10 hud-label space-y-1.5 z-10">
+  <!-- HUD readouts (desktop only: on mobile they crowd the title, so they're hidden below md) -->
+  <div class="hidden md:block absolute top-24 left-6 md:left-10 hud-label space-y-1.5 z-10">
     <p><span class="hud-dot mr-2"></span>ESTADO: OPERATIVO</p>
     <p>NODOS ACTIVOS: <span id="hud-nodes">128</span></p>
     <p>LATENCIA: <span id="hud-latency">11.4ms</span></p>
   </div>
-  <div class="absolute top-24 right-6 md:right-10 hud-label text-right space-y-1.5 z-10">
+  <div class="hidden md:block absolute top-24 right-6 md:right-10 hud-label text-right space-y-1.5 z-10">
     <p>COORD: 4.7110° N, 74.0721° W</p>
     <p>BUILD: 2026.07</p>
   </div>
 
+  <!-- Compact mobile-only status line, sits inline instead of floating -->
+  <div class="md:hidden relative z-10 max-w-7xl mx-auto px-6 w-full mb-6">
+    <p class="hud-label"><span class="hud-dot mr-2"></span>ESTADO: OPERATIVO · NODOS: <span id="hud-nodes-m">128</span></p>
+  </div>
+
   <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 w-full">
     <div class="max-w-3xl">
-      <p class="module-tag mb-6">SYS.00 — INGENIERÍA DE SOFTWARE Y AUTOMATIZACIÓN</p>
-      <h1 data-content-key="heroTitle" class="font-display text-5xl md:text-7xl font-medium leading-[1.05] tracking-tight">
+      <p class="module-tag mb-4 md:mb-6 text-[11px] md:text-xs">SYS.00 — INGENIERÍA DE SOFTWARE Y AUTOMATIZACIÓN</p>
+      <h1 data-content-key="heroTitle" class="font-display text-4xl sm:text-5xl md:text-7xl font-medium leading-[1.1] md:leading-[1.05] tracking-tight">
         Automatización que piensa como tu negocio.
       </h1>
-      <p data-content-key="heroSubtitle" class="mt-6 text-lg md:text-xl text-white/60 max-w-xl leading-relaxed">
+      <p data-content-key="heroSubtitle" class="mt-5 md:mt-6 text-base md:text-xl text-white/60 max-w-xl leading-relaxed">
         Diseño y construyo software, pipelines de datos e inteligencia de negocio para equipos que no tienen tiempo que perder en procesos manuales.
       </p>
-      <div class="mt-10 flex items-center gap-6">
-        <a href="#automatizacion" class="inline-flex items-center gap-3 bg-white text-void font-medium px-6 py-3.5 rounded-full hover:bg-signal hover:text-white transition-colors">
+      <div class="mt-8 md:mt-10 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+        <a href="#automatizacion" class="inline-flex items-center justify-center gap-3 bg-white text-void font-medium px-6 py-3.5 rounded-full hover:bg-signal hover:text-white transition-colors">
           Explorar Soluciones
         </a>
         <a href="#contacto" class="hud-label hover:text-white transition-colors">Hablemos de tu proyecto →</a>
@@ -96,7 +101,7 @@
     </div>
   </div>
 
-  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 hud-label z-10 flex flex-col items-center gap-2">
+  <div class="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 hud-label z-10 flex-col items-center gap-2">
     <span>DESPLAZAR</span>
     <span class="w-px h-8 bg-gradient-to-b from-white/50 to-transparent"></span>
   </div>
