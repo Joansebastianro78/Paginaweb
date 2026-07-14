@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sebastián Lukas — Ingeniería de Software &amp; Automatización</title>
+<meta name="description" content="Desarrollo de software, automatización de procesos, pipelines de datos e inteligencia de negocio." />
+<link rel="icon" id="site-favicon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2308090b'/%3E%3Ctext x='32' y='42' font-family='Arial, sans-serif' font-size='30' font-weight='700' fill='%234f7cff' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Tailwind (CDN / Play) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          void: "#08090b",
+          panel: "#101114",
+          "panel-raised": "#16171b",
+          line: "#23252b",
+          signal: "#4f7cff",
+          telemetry: "#ff9a44",
+        },
+        fontFamily: {
+          display: ["Space Grotesk", "sans-serif"],
+          sans: ["Inter", "sans-serif"],
+          mono: ["JetBrains Mono", "monospace"],
+        },
+      },
+    },
+  };
+</script>
+
+<link rel="stylesheet" href="css/styles.css" />
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // Reemplaza por tu Public Key de EmailJS (ver README.md)
+  if (window.emailjs) emailjs.init({ publicKey: "Z6vLRPyY5acB0iee5" });
+</script>
+</head>
+
+<body class="bg-void text-white antialiased">
+
+<!-- ============================ NAV ============================ -->
+<header class="fixed top-0 inset-x-0 z-50 border-b border-line/60 backdrop-blur-md bg-void/70">
+  <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10 h-16" aria-label="Navegación principal">
+    <a href="#inicio" class="font-display text-sm tracking-widest uppercase" data-content-key="siteName">S. Lukas / Systems</a>
+    <div class="hidden md:flex items-center gap-8 hud-label">
+      <a href="#automatizacion" class="hover:text-white transition-colors">Automatización</a>
+      <a href="#software" class="hover:text-white transition-colors">Software</a>
+      <a href="#inteligencia" class="hover:text-white transition-colors">Inteligencia de negocio</a>
+      <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
+    </div>
+    <a href="#contacto" class="hud-label border border-line px-4 py-2 rounded-full hover:border-signal hover:text-signal transition-colors">Iniciar proyecto</a>
+  </nav>
+</header>
+
+<!-- ============================ HERO ============================ -->
+<section id="inicio" class="relative h-screen w-full overflow-hidden flex items-center">
+  <div id="hero-canvas" aria-hidden="true"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- HUD readouts -->
+  <div class="absolute top-24 left-6 md:left-10 hud-label space-y-1.5 z-10">
+    <p><span class="hud-dot mr-2"></span>ESTADO: OPERATIVO</p>
+    <p>NODOS ACTIVOS: <span id="hud-nodes">128</span></p>
+    <p>LATENCIA: <span id="hud-latency">11.4ms</span></p>
+  </div>
+  <div class="absolute top-24 right-6 md:right-10 hud-label text-right space-y-1.5 z-10">
+    <p>COORD: 4.7110° N, 74.0721° W</p>
+    <p>BUILD: 2026.07</p>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 w-full">
+    <div class="max-w-3xl">
+      <p class="module-tag mb-6">SYS.00 — INGENIERÍA DE SOFTWARE Y AUTOMATIZACIÓN</p>
+      <h1 data-content-key="heroTitle" class="font-display text-5xl md:text-7xl font-medium leading-[1.05] tracking-tight">
+        Automatización que piensa como tu negocio.
+      </h1>
+      <p data-content-key="heroSubtitle" class="mt-6 text-lg md:text-xl text-white/60 max-w-xl leading-relaxed">
+        Diseño y construyo software, pipelines de datos e inteligencia de negocio para equipos que no tienen tiempo que perder en procesos manuales.
+      </p>
+      <div class="mt-10 flex items-center gap-6">
+        <a href="#automatizacion" class="inline-flex items-center gap-3 bg-white text-void font-medium px-6 py-3.5 rounded-full hover:bg-signal hover:text-white transition-colors">
+          Explorar Soluciones
+        </a>
+        <a href="#contacto" class="hud-label hover:text-white transition-colors">Hablemos de tu proyecto →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 hud-label z-10 flex flex-col items-center gap-2">
+    <span>DESPLAZAR</span>
+    <span class="w-px h-8 bg-gradient-to-b from-white/50 to-transparent"></span>
+  </div>
+</section>
+
+<!-- ===================== SECCIÓN 1: AUTOMATIZACIÓN Y DATOS ===================== -->
+<section id="automatizacion" class="relative min-h-screen flex items-center border-t border-line py-24">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 w-full grid md:grid-cols-2 gap-16 items-center">
+    <div class="reveal">
+      <p class="module-tag mb-4">SYS.01 — AUTOMATIZACIÓN &amp; DATOS</p>
+      <h2 data-content-key="autoTitle" class="font-display text-4xl md:text-5xl font-medium tracking-tight leading-tight">
+        Pipelines que mueven datos sin que nadie tenga que empujarlos.
+      </h2>
+      <p data-content-key="autoDesc" class="mt-6 text-white/60 text-lg leading-relaxed">
+        Construyo flujos ETL, arquitecturas cloud e integraciones geoespaciales que limpian, transforman y entregan información confiable de forma continua — desde la fuente hasta el reporte final.
+      </p>
+      <ul class="mt-8 space-y-3 hud-label">
+        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-signal"></span>Pipelines ETL con Python</li>
+        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-signal"></span>Infraestructura en AWS</li>
+        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-signal"></span>SQL avanzado y modelado de datos</li>
+        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-signal"></span>Procesamiento de flujos geoespaciales</li>
+      </ul>
+    </div>
+    <div class="reveal reveal-delay-2 relative aspect-square rounded-2xl border border-line overflow-hidden bg-panel bg-cover bg-center"
+         style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop')"
+         data-content-image="autoImage">
+      <div class="absolute inset-0 bg-gradient-to-t from-void via-void/10 to-transparent"></div>
+      <p class="absolute bottom-5 left-5 hud-label">TELEMETRÍA / PIPELINE-04</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECCIÓN 2: DESARROLLO DE SOFTWARE ===================== -->
+<section id="software" class="relative min-h-screen flex items-center border-t border-line py-24 bg-panel/40">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 w-full grid md:grid-cols-2 gap-16 items-center">
+    <div class="reveal md:order-2">
+      <p class="module-tag mb-4">SYS.02 — DESARROLLO DE SOFTWARE</p>
+      <h2 data-content-key="softTitle" class="font-display text-4xl md:text-5xl font-medium tracking-tight leading-tight">
+        Aplicaciones web y móviles hechas para escalar, no para remendar.
+      </h2>
+      <p data-content-key="softDesc" class="mt-6 text-white/60 text-lg leading-relaxed">
+        Interfaces rápidas y seguras, con backends listos para crecer. De prototipo a producción, con arquitectura pensada desde el primer commit.
+      </p>
+      <ul class="mt-8 space-y-3 hud-label">
+        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-signal"></span>Interfaces con Tailwind CSS</li>
+        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-signal"></span>Apps nativas con Kotlin Compose</li>
+        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-signal"></span>Backends con Supabase</li>
+        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-signal"></span>Infraestructura en tiempo real con Firebase</li>
+      </ul>
+    </div>
+    <div class="reveal reveal-delay-2 md:order-1 relative aspect-square rounded-2xl border border-line overflow-hidden bg-panel bg-cover bg-center"
+         style="background-image:url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&auto=format&fit=crop')"
+         data-content-image="softImage">
+      <div class="absolute inset-0 bg-gradient-to-t from-void via-void/10 to-transparent"></div>
+      <p class="absolute bottom-5 left-5 hud-label">TELEMETRÍA / BUILD-STABLE</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECCIÓN 3: INTELIGENCIA DE NEGOCIOS ===================== -->
+<section id="inteligencia" class="relative min-h-screen flex items-center border-t border-line py-24">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 w-full grid md:grid-cols-2 gap-16 items-center">
+    <div class="reveal">
+      <p class="module-tag mb-4">SYS.03 — INTELIGENCIA DE NEGOCIO</p>
+      <h2 data-content-key="biTitle" class="font-display text-4xl md:text-5xl font-medium tracking-tight leading-tight">
+        Decisiones más rápidas cuando los datos ya están donde deben estar.
+      </h2>
+      <p data-content-key="biDesc" class="mt-6 text-white/60 text-lg leading-relaxed">
+        Paneles interactivos en Power BI que convierten datos operativos en decisiones claras, con actualizaciones automáticas y métricas que tu equipo realmente usa.
+      </p>
+      <ul class="mt-8 space-y-3 hud-label">
+        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-signal"></span>Dashboards ejecutivos en Power BI</li>
+        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-signal"></span>Modelado de indicadores clave (KPIs)</li>
+        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-signal"></span>Actualización automática de datos</li>
+      </ul>
+    </div>
+    <div class="reveal reveal-delay-2 relative aspect-square rounded-2xl border border-line overflow-hidden bg-panel bg-cover bg-center"
+         style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop&sat=-100')"
+         data-content-image="biImage">
+      <div class="absolute inset-0 bg-gradient-to-t from-void via-void/10 to-transparent"></div>
+      <p class="absolute bottom-5 left-5 hud-label">TELEMETRÍA / DASHBOARD-01</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECCIÓN 4: CONTACTO ===================== -->
+<section id="contacto" class="relative min-h-screen flex items-center border-t border-line py-24 bg-panel/40">
+  <div class="max-w-3xl mx-auto px-6 md:px-10 w-full">
+    <div class="reveal text-center mb-14">
+      <p class="module-tag mb-4">SYS.04 — CONTACTO</p>
+      <h2 data-content-key="contactTitle" class="font-display text-4xl md:text-5xl font-medium tracking-tight">
+        Cuéntame qué proceso quieres automatizar.
+      </h2>
+      <p data-content-key="contactSubtitle" class="mt-4 text-white/60 text-lg">
+        Respondo en menos de 24 horas.
+      </p>
+    </div>
+
+    <form id="contact-form" class="reveal reveal-delay-1 space-y-5" novalidate>
+      <input type="hidden" name="title" value="Nuevo mensaje desde la landing" />
+      <div class="grid md:grid-cols-2 gap-5">
+        <div>
+          <label for="name" class="hud-label block mb-2">Nombre</label>
+          <input id="name" name="name" type="text" required
+                 class="field w-full rounded-lg px-4 py-3 text-sm" placeholder="Tu nombre" />
+        </div>
+        <div>
+          <label for="email" class="hud-label block mb-2">Correo</label>
+          <input id="email" name="email" type="email" required
+                 class="field w-full rounded-lg px-4 py-3 text-sm" placeholder="tu@correo.com" />
+        </div>
+      </div>
+      <div>
+        <label for="message" class="hud-label block mb-2">Mensaje</label>
+        <textarea id="message" name="message" rows="5" required
+                  class="field w-full rounded-lg px-4 py-3 text-sm resize-none"
+                  placeholder="Cuéntame sobre tu proceso, tu producto o el problema que quieres resolver."></textarea>
+      </div>
+      <button type="submit"
+              class="w-full bg-white text-void font-medium py-3.5 rounded-full hover:bg-signal hover:text-white transition-colors">
+        Enviar mensaje
+      </button>
+      <p id="contact-status" class="hud-label text-[13px] min-h-[1em]"></p>
+      <p class="hud-label text-[13px] text-white/30">
+        ¿Prefieres tu correo? Escríbenos a
+        <a href="mailto:sebastian.lukas78@gmail.com" class="text-white/60 hover:text-signal transition-colors">sebastian.lukas78@gmail.com</a>
+      </p>
+    </form>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="border-t border-line py-10">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-4 hud-label">
+    <p>© <span id="current-year"></span> Sebastián Lukas — Ingeniería de Software</p>
+    <p>sebastian.lukas78@gmail.com</p>
+    <a href="/admin.html" class="hover:text-signal transition-colors">Panel</a>
+  </div>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

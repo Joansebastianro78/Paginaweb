@@ -1,0 +1,36 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Función auxiliar: ¿el usuario autenticado es admin?
+    // Verifica el documento admins/{uid} con el campo role == "admin",
+    // exactamente como ya está estructurado en tu colección "admins".
+    function isAdmin() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == "admin";
+    }
+
+    // Contenido público del sitio (textos e imágenes de las secciones).
+    // Lectura: cualquiera (para que la landing cargue sin login).
+    // Escritura: solo administradores, desde el panel /admin.
+    match /siteContent/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Colección de administradores.
+    // Nadie puede leer ni escribir esta colección desde el cliente.
+    // Los documentos admins/{uid} se crean manualmente desde la
+    // consola de Firebase (Firestore) por un administrador existente.
+    match /admins/{uid} {
+      allow read, write: if false;
+    }
+
+    // Todo lo demás: denegado por defecto.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
